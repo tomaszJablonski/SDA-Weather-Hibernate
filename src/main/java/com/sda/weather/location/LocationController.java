@@ -15,8 +15,11 @@ public class LocationController {
 
     public String createLocation(String requestBody) {
         try {
+            //klasa w java
             LocationDTO locationDTO = objectMapper.readValue(requestBody, LocationDTO.class);
+            //entity
             Location location = locationService.createLocation(locationDTO.getCity(), locationDTO.getRegion(), locationDTO.getCountry(), locationDTO.getLongitude(), locationDTO.getLatitude());
+            //mapowanie location na  locationDTO
             LocationDTO responseBody = locationMapper.asLocationDTO(location);
             return objectMapper.writeValueAsString(responseBody);
         } catch (Exception e) {
@@ -26,7 +29,7 @@ public class LocationController {
 
     public String getLocations() {
         try {
-            List<LocationDTO> locations = locationService.getLocations().stream()
+            List<LocationDTO> locations = locationService.getLocationsService().stream()
                     .map(locationMapper::asLocationDTO)
                     .collect(Collectors.toList());
 

@@ -32,6 +32,7 @@ public class WeatherApplication {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         LocationMapper locationMapper = new LocationMapper();
         LocationController locationController = new LocationController(objectMapper, locationService, locationMapper);
+
         ForecastRepositoryImpl forecastRepository = new ForecastRepositoryImpl(sessionFactory);
         ForecastResponseMapper forecastResponseMapper = new ForecastResponseMapper();
         ForecastClient forecastClient = new ForecastClient(forecastResponseMapper,objectMapper);
@@ -39,6 +40,7 @@ public class WeatherApplication {
         WindDirectionMapper windDirectionMapper = new WindDirectionMapper();
         ForecastMapper forecastMapper = new ForecastMapper(windDirectionMapper);
         ForecastController forecastController = new ForecastController(forecastService, forecastMapper, objectMapper);
+
         Scanner scanner = new Scanner(System.in);
 
         UserInterface userInterface = new UserInterface(scanner, locationController, forecastController);

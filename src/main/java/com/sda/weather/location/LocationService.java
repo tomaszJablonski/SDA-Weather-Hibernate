@@ -20,7 +20,7 @@ public class LocationService {
         }
     }
 
-    List<Location> getLocations() {
+    List<Location> getLocationsService() {
         return locationRepository.findAll();
     }
 
